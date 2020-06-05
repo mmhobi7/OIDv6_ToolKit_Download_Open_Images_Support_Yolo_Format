@@ -23,7 +23,7 @@ Me and [Angelo](https://github.com/keldrom) are pleased if our little bit of cod
 
 ![Snippet of the OIDv4 available classes](images/classes.png)
 
-# Open Image Dataset v4
+# Open Image Dataset v6
 All the information related to this huge dataset can be found [here](https://storage.googleapis.com/openimages/web/index.html).
 In these few lines are simply summarized some statistics and important tips.
 
@@ -31,8 +31,8 @@ In these few lines are simply summarized some statistics and important tips.
 
 <table>
     <tr><td></td><td><b>Train<b></td><td><b>Validation<b></td><td><b>Test<b></td><td><b>#Classes<b></td></tr>
-    <tr><td>Images</td><td>1,743,042</td><td>41,620	</td><td>125,436</td><td>-</td></tr>
-    <tr><td>Boxes</td><td>14,610,229</td><td>204,621</td><td>625,282</td><td>600</td></tr>
+    <tr><td>Images</td><td>1,743,042</td><td>41,620</td><td>125,436</td><td>-</td></tr>
+    <tr><td>Boxes</td><td>14,610,229</td><td>303,980</td><td>937,327</td><td>600</td></tr>
 </table>
 
 **Image Classification**
