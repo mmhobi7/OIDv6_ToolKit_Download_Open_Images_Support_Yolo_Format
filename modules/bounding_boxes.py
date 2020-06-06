@@ -5,6 +5,7 @@ from modules.show import *
 from modules.csv_downloader import *
 
 from modules.utils import bcolors as bc
+from glob import glob
 
 def bounding_boxes_images(args, DEFAULT_OID_DIR):
 
@@ -59,34 +60,34 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 					name_file = file_list[0]
 					df_val = TTV(csv_dir, name_file, args.yes)
 					if not args.n_threads:
-						download(args, df_val, folder[0], dataset_dir, class_name, class_code)
+						download(args, df_val, folder[0], dataset_dir, class_name, class_code, class_list_for_yolo=args.classes)
 					else:
-						download(args, df_val, folder[0], dataset_dir, class_name, class_code, threads = int(args.n_threads))
+						download(args, df_val, folder[0], dataset_dir, class_name, class_code, threads = int(args.n_threads), class_list_for_yolo=args.classes)
 
 				elif args.type_csv == 'validation':
 					name_file = file_list[1]
 					df_val = TTV(csv_dir, name_file, args.yes)
 					if not args.n_threads:
-						download(args, df_val, folder[1], dataset_dir, class_name, class_code)
+						download(args, df_val, folder[1], dataset_dir, class_name, class_code,class_list_for_yolo=args.classes)
 					else:
-						download(args, df_val, folder[1], dataset_dir, class_name, class_code, threads = int(args.n_threads))
+						download(args, df_val, folder[1], dataset_dir, class_name, class_code, threads = int(args.n_threads), class_list_for_yolo=args.classes)
 
 				elif args.type_csv == 'test':
 					name_file = file_list[2]
 					df_val = TTV(csv_dir, name_file, args.yes)
 					if not args.n_threads:
-						download(args, df_val, folder[2], dataset_dir, class_name, class_code)
+						download(args, df_val, folder[2], dataset_dir, class_name, class_code, class_list_for_yolo=args.classes)
 					else:
-						download(args, df_val, folder[2], dataset_dir, class_name, class_code, threads = int(args.n_threads))
+						download(args, df_val, folder[2], dataset_dir, class_name, class_code, threads = int(args.n_threads),class_list_for_yolo=args.classes)
 
 				elif args.type_csv == 'all':
 					for i in range(3):
 						name_file = file_list[i]
 						df_val = TTV(csv_dir, name_file, args.yes)
 						if not args.n_threads:
- 							download(args, df_val, folder[i], dataset_dir, class_name, class_code)
+ 							download(args, df_val, folder[i], dataset_dir, class_name, class_code,class_list_for_yolo=args.classes)
 						else:
-							download(args, df_val, folder[i], dataset_dir, class_name, class_code, threads = int(args.n_threads))
+							download(args, df_val, folder[i], dataset_dir, class_name, class_code, threads = int(args.n_threads),class_list_for_yolo=args.classes)
 				else:
 					print(bc.ERROR + 'csv file not specified' + bc.ENDC)
 					exit(1)
@@ -111,34 +112,34 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 					name_file = file_list[0]
 					df_val = TTV(csv_dir, name_file, args.yes)
 					if not args.n_threads:
-						download(args, df_val, folder[0], dataset_dir, class_name, class_dict[class_name], class_list)
+						download(args, df_val, folder[0], dataset_dir, class_name, class_dict[class_name], class_list, class_list_for_yolo=args.classes)
 					else:
-						download(args, df_val, folder[0], dataset_dir, class_name, class_dict[class_name], class_list, int(args.n_threads))
+						download(args, df_val, folder[0], dataset_dir, class_name, class_dict[class_name], class_list, int(args.n_threads), class_list_for_yolo=args.classes)
 
 				elif args.type_csv == 'validation':
 					name_file = file_list[1]
 					df_val = TTV(csv_dir, name_file, args.yes)
 					if not args.n_threads:
-						download(args, df_val, folder[1], dataset_dir, class_name, class_dict[class_name], class_list)
+						download(args, df_val, folder[1], dataset_dir, class_name, class_dict[class_name], class_list, class_list_for_yolo=args.classes)
 					else:
-						download(args, df_val, folder[1], dataset_dir, class_name, class_dict[class_name], class_list, int(args.n_threads))
+						download(args, df_val, folder[1], dataset_dir, class_name, class_dict[class_name], class_list, int(args.n_threads), class_list_for_yolo=args.classes)
 
 				elif args.type_csv == 'test':
 					name_file = file_list[2]
 					df_val = TTV(csv_dir, name_file, args.yes)
 					if not args.n_threads:
-						download(args, df_val, folder[2], dataset_dir, class_name, class_dict[class_name], class_list)
+						download(args, df_val, folder[2], dataset_dir, class_name, class_dict[class_name], class_list, class_list_for_yolo=args.classes)
 					else:
-						download(args, df_val, folder[2], dataset_dir, class_name, class_dict[class_name], class_list, int(args.n_threads))
+						download(args, df_val, folder[2], dataset_dir, class_name, class_dict[class_name], class_list, int(args.n_threads), class_list_for_yolo=args.classes)
 
 				elif args.type_csv == 'all':
 					for i in range(3):
 						name_file = file_list[i]
 						df_val = TTV(csv_dir, name_file, args.yes)
 						if not args.n_threads:
-							download(args, df_val, folder[i], dataset_dir, class_name, class_dict[class_name], class_list)
+							download(args, df_val, folder[i], dataset_dir, class_name, class_dict[class_name], class_list, class_list_for_yolo=args.classes)
 						else:
-							download(args, df_val, folder[i], dataset_dir, class_name, class_dict[class_name], class_list, int(args.n_threads))
+							download(args, df_val, folder[i], dataset_dir, class_name, class_dict[class_name], class_list, int(args.n_threads), class_list_for_yolo=args.classes)
 
 
 	elif args.command == 'visualizer':
@@ -165,17 +166,34 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 				if class_name == 'exit':
 					exit(1)
 
-			download_dir = os.path.join(dataset_dir, image_dir, class_name)
-			label_dir = os.path.join(dataset_dir, image_dir, class_name, 'Label')
+			if args.multiclasses=='0':
+				download_dir = os.path.join(dataset_dir, image_dir, class_name,'images')
+				label_dir = os.path.join(dataset_dir, image_dir, class_name, 'labels')
+			else:
+				download_dir = os.path.join(dataset_dir, image_dir, class_name)
+				label_dir = os.path.join(dataset_dir, image_dir, class_name)
+
 
 			if not os.path.isdir(download_dir):
 				print("[ERROR] Images folder not found")
+				print("[INFO] If u downloaded your images in multiclasses format, then you have to specify it here also ")
 				exit(1)
 			if not os.path.isdir(label_dir):
 				print("[ERROR] Labels folder not found")
+				print("[INFO] If u downloaded your images in multiclasses format, then you have to specify it here also ")
+
 				exit(1)
 
 			index = 0
+
+			images_files = glob(os.path.join(download_dir,'*.jpg'))
+			images_files += glob(os.path.join(download_dir,'*.JPG'))
+			images_files += glob(os.path.join(download_dir,'*.jpeg'))
+			images_files += glob(os.path.join(download_dir,'*.JPEG'))
+			images_files += glob(os.path.join(download_dir,'*.png'))
+			images_files += glob(os.path.join(download_dir,'*.PNG'))
+
+
 
 			print(dedent("""
                 --------------------------------------------------------
@@ -188,25 +206,23 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
                   You can resize the window if it's not optimal
                 --------------------------------------------------------
                 """))
+			classes_list = None
+			if args.yoloLabelStyle:
+				classes_list = args.classes
 
-			show(class_name, download_dir, label_dir,len(os.listdir(download_dir))-1, index)
+			index = show(class_name, download_dir, label_dir,images_files, index, args)
 
 			while True:
 
-				progression_bar(len(os.listdir(download_dir))-1, index+1)
+				progression_bar(len(images_files), index+1)
 
 				k = cv2.waitKey(0) & 0xFF
 
 				if k == ord('d'):
-					cv2.destroyAllWindows()
-					if index < (len(os.listdir(download_dir)) - 2):
-						index += 1
-					show(class_name, download_dir, label_dir,len(os.listdir(download_dir))-1, index)
+					index += 1
 				elif k == ord('a'):
-					cv2.destroyAllWindows()
-					if index > 0:
-						index -= 1
-					show(class_name, download_dir, label_dir,len(os.listdir(download_dir))-1, index)
+					index -= 1
+				
 				elif k == ord('e'):
 					cv2.destroyAllWindows()
 					break
@@ -218,3 +234,8 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 					cv2.destroyAllWindows()
 					exit(1)
 					break
+			
+				cv2.destroyAllWindows()
+				index =  show(class_name, download_dir, label_dir,images_files, index, args)
+
+

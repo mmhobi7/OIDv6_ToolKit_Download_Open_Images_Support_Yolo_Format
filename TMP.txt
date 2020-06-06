@@ -1,0 +1,9 @@
+Handgun
+Rifle
+Shotgun
+Knife
+Kitchen knife
+Dagger
+Baseball bat
+Axe
+Hammer
