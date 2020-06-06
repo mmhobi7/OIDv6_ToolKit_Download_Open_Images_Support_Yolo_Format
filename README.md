@@ -1,4 +1,4 @@
-<h1 align="center"> ~ OIDv4 ToolKit ~ </h1>
+<h1 align="center"> ~ OIDv4.1 ToolKit Support YOLO Annotation Format ~ </h1>
 
 Do you want to build your personal object detector but you don't have enough images to train your model? Do you want to train your personal image classifier, but you are tired of the deadly slowness of ImageNet? Have you already discovered [Open Images Dataset v4](https://storage.googleapis.com/openimages/web/index.html) that has [600](https://storage.googleapis.com/openimages/2018_04/bbox_labels_600_hierarchy_visualizer/circle.html) classes and more than 1,700,000 images with related bounding boxes ready to use? Do you want to exploit it for your projects but you don't want to download gigabytes and gigabytes of data!?
 
@@ -23,7 +23,7 @@ Me and [Angelo](https://github.com/keldrom) are pleased if our little bit of cod
 
 ![Snippet of the OIDv4 available classes](images/classes.png)
 
-# Open Image Dataset v4
+# Open Image Dataset v6
 All the information related to this huge dataset can be found [here](https://storage.googleapis.com/openimages/web/index.html).
 In these few lines are simply summarized some statistics and important tips.
 
@@ -31,8 +31,8 @@ In these few lines are simply summarized some statistics and important tips.
 
 <table>
     <tr><td></td><td><b>Train<b></td><td><b>Validation<b></td><td><b>Test<b></td><td><b>#Classes<b></td></tr>
-    <tr><td>Images</td><td>1,743,042</td><td>41,620	</td><td>125,436</td><td>-</td></tr>
-    <tr><td>Boxes</td><td>14,610,229</td><td>204,621</td><td>625,282</td><td>600</td></tr>
+    <tr><td>Images</td><td>1,743,042</td><td>41,620</td><td>125,436</td><td>-</td></tr>
+    <tr><td>Boxes</td><td>14,610,229</td><td>303,980</td><td>937,327</td><td>600</td></tr>
 </table>
 
 **Image Classification**
@@ -118,28 +118,69 @@ main_folder
         |
         └─── validation
              |
-             └───Apple
-             |     |
-             |     |0fdea8a716155a8e.jpg
-             |     |2fe4f21e409f0a56.jpg
-             |     |...
-             |     └───Labels
-             |            |
-             |            |0fdea8a716155a8e.txt
-             |            |2fe4f21e409f0a56.txt
-             |            |...
+             |___Apple
+             |   |
+             |   └───images
+             |   |   |
+             |   |   |0fdea8a716155a8e.jpg
+             |   |   |2fe4f21e409f0a56.jpg
+             |   |   |...
+             |   |
+             |   └───labels
+             |       |
+             |       |0fdea8a716155a8e.txt
+             |       |2fe4f21e409f0a56.txt
+             |       |...
              |
              └───Orange
-                   |
-                   |0b6f22bf3b586889.jpg
-                   |0baea327f06f8afb.jpg
-                   |...
-                   └───Labels
-                          |
-                          |0b6f22bf3b586889.txt
-                          |0baea327f06f8afb.txt
-                          |...
+                 |
+                 |___images
+                 |   |
+                 |   |0b6f22bf3b586889.jpg
+                 |   |0baea327f06f8afb.jpg
+                 |   |...
+                 |
+                 └───labels
+                     |
+                     |0b6f22bf3b586889.txt
+                     |0baea327f06f8afb.txt
+                     |...
 ```
+the directory structure like this in case of multiclasses = 1 is specified in arguments:
+
+```
+main_folder
+│   main.py
+│
+└───OID
+    │   file011.txt
+    │   file012.txt
+    │
+    └───csv_folder
+    |    │   class-descriptions-boxable.csv
+    |    │   validation-annotations-bbox.csv
+    |
+    └───Dataset
+        |
+        └─── test
+        |
+        └─── train
+        |
+        └─── validation
+             |
+             |___Apple_Orange
+                  |
+                  |0fdea8a716155a8e.jpg
+                  |0fdea8a716155a8e.txt
+                  |2fe4f21e409f0a56.jpg
+                  |2fe4f21e409f0a56.txt
+                  |0b6f22bf3b586889.jpg
+                  |0b6f22bf3b586889.txt
+                  |0baea327f06f8afb.jpg
+                  |0baea327f06f8afb.txt
+                  |...
+
+
 If you have already downloaded the different csv files you can simply put them in the `csv_folder`. The script takes automatically care of the download of these files, but if you want to manually download them for whatever reason [here](https://storage.googleapis.com/openimages/web/download.html) you can find them.
 
 If you interupt the downloading script `ctrl+d` you can always restart it from the last image downloaded.
@@ -156,6 +197,8 @@ Again if we want to download Apple and Oranges, but in a common folder
 
 ### Annotations
 
+## Normal annotation type
+
 <img align="right" src="images/rectangle.png">
 
 In the __original__ dataset the coordinates of the bounding boxes are made in the following way:
@@ -168,7 +211,21 @@ However, in order to accomodate a more intuitive representation and give the max
 
 where each coordinate is denormalized. So, the four different values correspond to the actual number of pixels of the related image.
 
-If you don't need the labels creation use `--noLabels`.
+<img align="right" src="images/yolo_bounding_box_format.png" width="250" height="250">
+
+## Yolo annotation type
+`you have specifiy in argument --yoloLableStyle`
+
+that will save labels in yolo format which is:
+
+`class_index    x_mid    y_mid     width     height`
+
+where 
+- **class_index** : the index of the class label in the given classes list
+- **x_mid, y_mid** : is the center of the bounding box normalised to the image width and height to be in range (0,1)
+- **width, height**: the width and heigh of the bounding box normalised regarding to the image width and height to be in range (0,1)
+
+**If you don't need the labels creation use `--noLabels`.**
 
 ### Optional Arguments
 The annotations of the dataset has been marked with a bunch of boolean values. This attributes are reported below:
@@ -180,6 +237,7 @@ The annotations of the dataset has been marked with a bunch of boolean values. T
 - **n_threads**: Select how many threads you want to use. The ToolKit will take care for you to download multiple images in parallel, considerably speeding up the downloading process.
 - **limit**: Limit the number of images being downloaded. Useful if you want to restrict the size of your dataset.
 - **y**: Answer yes when have to download missing csv files.
+- **yoloLabelStyle** : download labels and save it in yolo format as it showen above
 
 Naturally, the ToolKit provides the same options as paramenters in order to filter the downloaded images.
 For example, with:
@@ -213,6 +271,7 @@ The Toolkit automatically will put the dataset and the csv folder in specific fo
 |          n_threads |      O     |            |        O       | Indicates the maximum threads number             |
 |              limit |      O     |            |        O       | Max number of images to download                 |
 |                sub |            |            |        R       | Human-verified or Machine-generated images (h/m) |
+|     yoloLabelStyle |      O     |            |                | Download labels and save it in yolo format       |
 
 R = required, O = optional
 
