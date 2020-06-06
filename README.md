@@ -4,7 +4,7 @@
 ### this forked repo contains the following updates:
 - 1- Supplyed an optional argument `--yoloLabelStyle` to enable saving the downloaded labels into [yolo format](## Yolo annotation type)
 - 2- Editied the [download directory structure](# 2.0 Use the ToolKit to download images for Object Detection) to be more organised
-- 3- Updated the [visulaiser](# 4.0 Use the ToolKit to visualize the labeled images) to work with new directory structure and support yolo label format
+- 3- Updated the [visulaiser](# 4.0 Visualizer) to work with new directory structure and support yolo label format
 
 Do you want to build your personal object detector but you don't have enough images to train your model? Do you want to train your personal image classifier, but you are tired of the deadly slowness of ImageNet? Have you already discovered [Open Images Dataset v4](https://storage.googleapis.com/openimages/web/index.html) that has [600](https://storage.googleapis.com/openimages/2018_04/bbox_labels_600_hierarchy_visualizer/circle.html) classes and more than 1,700,000 images with related bounding boxes ready to use? Do you want to exploit it for your projects but you don't want to download gigabytes and gigabytes of data!?
 
@@ -281,7 +281,8 @@ The Toolkit automatically will put the dataset and the csv folder in specific fo
 
 R = required, O = optional
 
-# 4.0 Use the ToolKit to visualize the labeled images
+# 4.0 Visualizer
+### Use the ToolKit to visualize the labeled images
 The ToolKit is useful also for visualize the downloaded images with the respective labels.
 ```bash
    python3 main.py visualizer
