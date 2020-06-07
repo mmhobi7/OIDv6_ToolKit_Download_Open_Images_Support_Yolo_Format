@@ -24,7 +24,7 @@ from modules.bounding_boxes import *
 from modules.image_level import *
 
 
-ROOT_DIR = ''
+ROOT_DIR = './'
 DEFAULT_OID_DIR = os.path.join(ROOT_DIR, 'OID')
 
 if __name__ == '__main__':

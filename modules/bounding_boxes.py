@@ -9,14 +9,16 @@ from glob import glob
 import json
 
 
-def save_args_conf(args):
-	config = {}
+def save_args_conf(args, dataset_path):
+	print(bc.INFO+ ' saving dataset configurations at '+ os.path.join(dataset_path, 'config.json')+ bc.ENDC)
+	with open(os.path.join(dataset_path, 'config.json'), 'w') as f:
+		f.truncate()
+		json.dump(vars(args), f)
 
-	print(args)
+
 
 def bounding_boxes_images(args, DEFAULT_OID_DIR):
 
-	save_args_conf(args)
 
 	if not args.Dataset:
 		dataset_dir = os.path.join(DEFAULT_OID_DIR, 'Dataset')
@@ -28,7 +30,12 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 	name_file_class = 'class-descriptions-boxable.csv'
 	CLASSES_CSV = os.path.join(csv_dir, name_file_class)
 
+
+
 	if args.command == 'downloader':
+
+		save_args_conf(args, dataset_dir)
+
 
 		logo(args.command)
 
@@ -162,6 +169,19 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 
 
 	elif args.command == 'visualizer':
+		try:
+			print(bc.INFO+ ' try to laod dataset configurations at '+ os.path.join(dataset_dir, 'config.json')+ bc.ENDC)
+			with open(os.path.join(dataset_dir, 'config.json'), 'r') as f:
+				config_dict = json.load(f)
+
+			args.classes = config_dict['classes']
+			args.multiclasses = config_dict['multiclasses']
+			args.yoloLabelStyle = config_dict['multiclasses']
+
+		except Exception as e:
+			print(e)
+			print(bc.FAIL+ ' cannot load Dataset configurations at '+ os.path.join(dataset_dir, 'config.json')+ bc.ENDC)
+			print(bc.INFO+' you have to specifiy the dataset config by ur self if you faced any errors later' + bc.ENDC)
 
 		logo(args.command)
 
