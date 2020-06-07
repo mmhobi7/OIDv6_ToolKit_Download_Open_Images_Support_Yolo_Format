@@ -6,8 +6,17 @@ from modules.csv_downloader import *
 
 from modules.utils import bcolors as bc
 from glob import glob
+import json
+
+
+def save_args_conf(args):
+	config = {}
+
+	print(args)
 
 def bounding_boxes_images(args, DEFAULT_OID_DIR):
+
+	save_args_conf(args)
 
 	if not args.Dataset:
 		dataset_dir = os.path.join(DEFAULT_OID_DIR, 'Dataset')
@@ -54,7 +63,12 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 				error_csv(name_file_class, csv_dir, args.yes)
 				df_classes = pd.read_csv(CLASSES_CSV, header=None)
 
-				class_code = df_classes.loc[df_classes[1] == class_name].values[0][0]
+				try:
+					class_code = df_classes.loc[df_classes[1].str.lower() == class_name].values[0][0]
+				except:
+					print(bc.FAIL+ " '"+class_name+"', please check spelling ! or that the class is already exist in the dataset"+ bc.ENDC)
+					exit(1)
+
 
 				if args.type_csv == 'train':
 					name_file = file_list[0]
@@ -89,7 +103,7 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 						else:
 							download(args, df_val, folder[i], dataset_dir, class_name, class_code, threads = int(args.n_threads),class_list_for_yolo=args.classes)
 				else:
-					print(bc.ERROR + 'csv file not specified' + bc.ENDC)
+					print(bc.FAIL + 'csv file not specified' + bc.ENDC)
 					exit(1)
 
 		elif args.multiclasses == '1':
@@ -104,7 +118,12 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 
 			class_dict = {}
 			for class_name in class_list:
-				class_dict[class_name] = df_classes.loc[df_classes[1] == class_name].values[0][0]
+
+				try:
+					class_dict[class_name] = df_classes.loc[df_classes[1].str.lower() == class_name == class_name].values[0][0]
+				except:
+					print(bc.FAIL+ " '"+class_name+"', please check spelling ! or that the class is already exist in the dataset" + bc.ENDC)
+					exit(1)
 
 			for class_name in class_list:
 

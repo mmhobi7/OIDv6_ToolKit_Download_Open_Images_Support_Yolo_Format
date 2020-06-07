@@ -1,6 +1,6 @@
 import os
 from textwrap import dedent
-
+import json
 def images_options(df_val, args):
     '''
     Manage the options for the images downloader.
@@ -30,6 +30,7 @@ def images_options(df_val, args):
         df_val = df_val[~df_val.ImageID.isin(rejectedID)]
 
     return df_val
+
 
 def mkdirs(Dataset_folder, csv_folder, classes, type_csv):
     '''
