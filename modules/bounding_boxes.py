@@ -64,7 +64,7 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 				df_classes = pd.read_csv(CLASSES_CSV, header=None)
 
 				try:
-					class_code = df_classes.loc[df_classes[1].str.lower() == class_name].values[0][0]
+					class_code = df_classes.loc[df_classes[1].str.lower() == class_name.lower()].values[0][0]
 				except:
 					print(bc.FAIL+ " '"+class_name+"', please check spelling ! or that the class is already exist in the dataset"+ bc.ENDC)
 					exit(1)
@@ -120,7 +120,7 @@ def bounding_boxes_images(args, DEFAULT_OID_DIR):
 			for class_name in class_list:
 
 				try:
-					class_dict[class_name] = df_classes.loc[df_classes[1].str.lower() == class_name == class_name].values[0][0]
+					class_dict[class_name] = df_classes.loc[df_classes[1].str.lower() == class_name.lower()].values[0][0]
 				except:
 					print(bc.FAIL+ " '"+class_name+"', please check spelling ! or that the class is already exist in the dataset" + bc.ENDC)
 					exit(1)
