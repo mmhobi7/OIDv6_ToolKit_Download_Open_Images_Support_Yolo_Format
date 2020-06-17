@@ -2,7 +2,7 @@
 <h2> This is a forked repository from main repo <a herf="https://github.com/EscVM/OIDv4_ToolKit">OID4</a> edited and updated to support the yolo label formats</h2>
 
 ### this forked repo contains the following updates:
-- 1- Supplyed an optional argument `--yoloLabelStyle` to enable saving the downloaded labels into [yolo format](## Yolo annotation type)
+- 1- Supplyed an optional argument `--yoloLabelStyle` to enable saving the downloaded labels into [yolo format](https://github.com/OmarSayedMostafa/OIDv4.1_ToolKit_Download_Open_Images_Support_Yolo_Format#yolo-annotation-type)
 - 2- Editied the [download directory structure](# 2.0 Use the ToolKit to download images for Object Detection) to be more organised
 - 4 . Saving the configuration / args of the dataset as a json file with the data set directory to use it later with the visualizer
 - 3- Updated the [visulaiser](# 4.0 Visualizer) to work with new directory structure and support yolo label format
