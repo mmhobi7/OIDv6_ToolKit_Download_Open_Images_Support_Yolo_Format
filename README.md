@@ -5,7 +5,7 @@
 - 1- Supplyed an optional argument `--yoloLabelStyle` to enable saving the downloaded labels into [yolo format](https://github.com/OmarSayedMostafa/OIDv4.1_ToolKit_Download_Open_Images_Support_Yolo_Format#yolo-annotation-type)
 - 2- Editied the [download directory structure](https://github.com/OmarSayedMostafa/OIDv4.1_ToolKit_Download_Open_Images_Support_Yolo_Format/blob/master/README.md#20-use-the-toolkit-to-download-images-for-object-detection) to be more organised
 - 4 . Saving the configuration / args of the dataset as a json file with the data set directory to use it later with the visualizer
-- 3- Updated the [visulaiser](# 4.0 Visualizer) to work with new directory structure and support yolo label format
+- 3- Updated the [visulaiser](https://github.com/OmarSayedMostafa/OIDv4.1_ToolKit_Download_Open_Images_Support_Yolo_Format/blob/master/README.md#40-visualizer) to work with new directory structure and support yolo label format
 
 Do you want to build your personal object detector but you don't have enough images to train your model? Do you want to train your personal image classifier, but you are tired of the deadly slowness of ImageNet? Have you already discovered [Open Images Dataset v6(https://storage.googleapis.com/openimages/web/index.html) that has [600](https://storage.googleapis.com/openimages/2018_04/bbox_labels_600_hierarchy_visualizer/circle.html) classes and more than 1,700,000 images with related bounding boxes ready to use? Do you want to exploit it for your projects but you don't want to download gigabytes and gigabytes of data!?
 
