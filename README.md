@@ -71,7 +71,7 @@ Python3 is required.
 
 1. Clone this repository
    ```bash
-   git clone https://github.com/EscVM/OIDv4_ToolKit.git
+   git clone https://github.com/NanoCode012/OIDv6_ToolKit_Download_Open_Images_Support_Yolo_Format.git
    ```
 2. Install the required packages
    ```bash
@@ -313,7 +313,7 @@ Hence with `d` (next), `a` (previous) and `q` (exit) you will be able to explore
 - [Michael Baroody](https://github.com/mbaroody) has fixed the toolkit's visualizer for multiword classes
 
 # Citation
-Use this bibtex if you want to cite this repository:
+Use this bibtex if you want to cite the main repository:
 ```
 @misc{OIDv4_ToolKit,
   title={Toolkit to download and visualize single or multiple classes from the huge Open Images v4 dataset},
