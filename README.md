@@ -227,7 +227,7 @@ where each coordinate is denormalized. So, the four different values correspond 
 <img align="right" src="images/yolo_bounding_box_format.png" width="250" height="250">
 
 ## Yolo annotation type
-`you have specifiy in argument --yoloLableStyle`
+`you have specifiy in argument --yoloLabelStyle`
 
 that will save labels in yolo format which is:
 
