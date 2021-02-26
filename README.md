@@ -77,7 +77,13 @@ Python3 is required.
    ```bash
    pip3 install -r requirements.txt
    ```
+3. Make `OID` and `OID/Dataset` folder
+   ```bash
+   mkdir OID
+   mkdir OID/Dataset
+   ```
 Peek inside the requirements file if you have everything already installed. Most of the dependencies are common libraries.
+
 
 ## 1.2 Launch the ToolKit to check the available options
 First of all, if you simply want a quick reminder of al the possible options given by the script, you can simply launch, from your console of choice, the [main.py](main.py). Remember to point always at the main directory of the project
